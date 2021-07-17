@@ -1,1 +1,29 @@
+int led = 13;
+int sensor = 2;
+int counter=0;
 
+void setup() {
+  pinMode(led, OUTPUT);
+  pinMode(sensor, INPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int sensorval = digitalRead(sensor);
+  
+  
+  if (sensorval == HIGH) {
+    digitalWrite(led, HIGH);
+    counter++;
+    Serial.println("motion flag ON");
+    Serial.print("number of motions detected: ");
+    Serial.print(counter);
+    Serial.println();
+    delay(1000);
+  }
+  else {
+    digitalWrite(led, LOW);
+    Serial.println("motion flag OFF");
+    delay(1000);
+  }
+}
