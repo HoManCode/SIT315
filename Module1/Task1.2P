@@ -1,13 +1,13 @@
 // C++ code
 //
 int led = 13;
-int sensor = 2;
+int PIRSensor = 2;
 int counter=0;
 
 void setup() {
   pinMode(led, OUTPUT);
   pinMode(sensor, INPUT);
-  attachInterrupt(0,pin_ISR,CHANGE);
+  attachInterrupt(digitalPinToInterrupt(PIRSensor),pin_ISR,CHANGE);
   Serial.begin(9600);
 }
 
