@@ -1,0 +1,31 @@
+// C++ code
+//
+int led = 13;
+int PIRSensor1 = 2;
+int PIRSensor2 = 3;
+int counter=0;
+
+void setup() {
+  pinMode(led, OUTPUT);
+  pinMode(PIRSensor1, INPUT);
+  pinMode(PIRSensor2, INPUT);
+  attachInterrupt(digitalPinToInterrupt(PIRSensor1),pin_ISR,CHANGE);
+  attachInterrupt(digitalPinToInterrupt(PIRSensor2),pin_ISR,CHANGE);
+  Serial.begin(9600);
+}
+
+void loop() {
+    digitalWrite(led, LOW);
+    Serial.println("motion flag OFF");
+  	delay(1000);
+  }
+
+
+void pin_ISR() {
+    digitalWrite(led, HIGH);
+    counter++;
+    Serial.println("motion flag ON");
+    Serial.print("number of motions detected: ");
+    Serial.print(counter);
+    Serial.println();
+}
